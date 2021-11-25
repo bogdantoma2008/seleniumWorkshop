@@ -33,7 +33,7 @@ public class Homework {
 
 		loginButton = driver.findElement(By.className("popup_link"));
 
-		assertTrue(loginButton != null);
+		assertTrue(loginButton.isDisplayed());
 
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 
@@ -47,8 +47,8 @@ public class Homework {
 		loginPass = driver.findElement(By.id("password"));
 
 		SoftAssert sa = new SoftAssert();
-		sa.assertTrue(loginEmail != null);
-		sa.assertTrue(loginPass != null);
+		sa.assertTrue(loginEmail.isDisplayed());
+		sa.assertTrue(loginPass.isDisplayed());
 
 		sa.assertAll();
 
