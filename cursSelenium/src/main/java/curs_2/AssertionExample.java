@@ -11,7 +11,7 @@ public class AssertionExample {
 	public void softAssert() {
 		SoftAssert sa = new SoftAssert();
 		System.out.println("softAssert_1");
-		sa.assertTrue(false);
+		sa.assertTrue(true);
 		System.out.println("softAssert_2");
 		sa.assertAll();
 	}
@@ -19,7 +19,7 @@ public class AssertionExample {
 	@Test
 	public void hardAssert() {
 		System.out.println("hardAssert_1");
-		assertTrue(false);
+		assertTrue(true);
 		System.out.println("hardAssert_2");
 	}
 }
