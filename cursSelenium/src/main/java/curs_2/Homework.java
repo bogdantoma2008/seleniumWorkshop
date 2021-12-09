@@ -1,8 +1,6 @@
 package curs_2;
 
-import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
