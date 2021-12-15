@@ -11,8 +11,6 @@ import utils.BaseTest;
 
 public class Homework extends BaseTest {
 
-	
-
 	@Test(priority = 0)
 	public void findAndAddToCart() throws InterruptedException {
 		WebElement iconSearch = driver
@@ -58,6 +56,7 @@ public class Homework extends BaseTest {
 	@Test(dependsOnMethods = "findAndAddToCart")
 	public void checkCart() throws InterruptedException {
 		WebElement inputQuantity = driver.findElement(By.xpath("//input[@class='input-text qty text']"));
+		inputQuantity.clear();
 		inputQuantity.sendKeys("2");
 		WebElement buttonUpdateCart = driver.findElement(By.xpath("//button[@name='update_cart']"));
 		buttonUpdateCart.click();
