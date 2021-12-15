@@ -15,12 +15,20 @@ public class BaseTest {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://keybooks.ro/");
-		//driver.get("https://the-internet.herokuapp.com/javascript_alerts");
+		// driver.get("https://the-internet.herokuapp.com/javascript_alerts");
 	}
 
 	@AfterClass
 	public void cleanup() throws InterruptedException {
 		Thread.sleep(4000);
 		driver.quit();
+	}
+
+	public void navigateToAccount() {
+		driver.get("https://keybooks.ro/account/");
+	}
+	
+	public void navigateToShop() {
+		driver.get("https://keybooks.ro/shop/");
 	}
 }
