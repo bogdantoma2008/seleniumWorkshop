@@ -1,9 +1,17 @@
 package utils;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.*;
+
+import com.google.common.io.Files;
+
 import pages.NavMenuPage;
 
 public class BaseTest {
@@ -26,8 +34,23 @@ public class BaseTest {
 
 	@AfterClass
 	public void tearDown() throws InterruptedException {
-		Thread.sleep(4000);
 		driver.quit();
+	}
+
+	@AfterMethod
+	public void recordFailure(ITestResult result) {
+		if (ITestResult.FAILURE == result.getStatus()) {
+
+			TakesScreenshot poza = (TakesScreenshot) driver;
+			File picture = poza.getScreenshotAs(OutputType.FILE);
+
+			try {
+				Files.copy(picture, new File("screenshots/" + result.getName() + ".png"));
+			} catch (Exception e) {
+				System.out.println("Could not take picture");
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void navigateToAccount() {
@@ -36,6 +59,10 @@ public class BaseTest {
 
 	public void navigateToShop() {
 		driver.get("https://keybooks.ro/shop/");
+	}
+	
+	public void navigateToUrl(String url) {
+		driver.navigate().to(url);
 	}
 
 }

@@ -6,4 +6,5 @@ public interface Texts {
 	public static String drama = "Drama";
 	public static String biography = "Biography";
 	public static String cookbooks = "Cookbooks";
+	public static String testUserLoginName = "Test User";
 }
