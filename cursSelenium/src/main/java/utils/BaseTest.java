@@ -1,26 +1,31 @@
 package utils;
 
+import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
+import pages.NavMenuPage;
 
-public class BaseTest implements Texts{
+public class BaseTest {
 
 	public WebDriver driver;
+	public NavMenuPage navMenu;
 
 	@Parameters({ "url" })
 	@BeforeClass
-	public void setup(String url) {
-		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver-96.0.4664.45.exe");
+	public void setUp(String url) {
+		System.setProperty("webdriver.chrome.driver", "drivers/chromedriver_97.0.4692.71.exe");
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		// driver.get("https://keybooks.ro/");
+		driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
 		driver.get(url);
+
+		navMenu = new NavMenuPage(driver);
 
 	}
 
 	@AfterClass
-	public void cleanup() throws InterruptedException {
+	public void tearDown() throws InterruptedException {
 		Thread.sleep(4000);
 		driver.quit();
 	}
@@ -32,4 +37,5 @@ public class BaseTest implements Texts{
 	public void navigateToShop() {
 		driver.get("https://keybooks.ro/shop/");
 	}
+
 }
